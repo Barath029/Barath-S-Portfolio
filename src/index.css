@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #130911;
+    color: #FFF6F2;
+    overflow-x: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Editorial Rose Gold Pattern */
+.editorial-grid {
+  background-size: 52px 52px;
+  background-image: 
+    linear-gradient(to right, rgba(225, 142, 126, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(225, 142, 126, 0.04) 1px, transparent 1px);
+}
+
+/* Custom Scrollbar in Velvet & Rose Gold */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #130911;
+}
+::-webkit-scrollbar-thumb {
+  background: #E18E7E;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F2A99B;
+}
+
+/* =========================================================================
+   LIGHT THEME OVERRIDES (Luxury Linen & Terracotta Editorial System)
+   ========================================================================= */
+html.light body,
+.light body,
+body.light {
+  background-color: #FAF5F0 !important;
+  color: #1C101A !important;
+}
+
+/* Light Scrollbar */
+html.light ::-webkit-scrollbar-track {
+  background: #FAF5F0;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #C97262;
+}
+
+/* Light Surface & Card Overrides */
+html.light .bg-\[\#130911\],
+html.light .bg-\[\#130911\]\/90 {
+  background-color: #FAF5F0 !important;
+}
+
+html.light .bg-\[\#1C101A\],
+html.light .bg-\[\#1C101A\]\/90,
+html.light .bg-\[\#1C101A\]\/95,
+html.light .bg-\[\#1C101A\]\/75 {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 10px 30px -10px rgba(130, 70, 60, 0.08) !important;
+}
+
+html.light .bg-\[\#251422\],
+html.light .bg-\[\#251422\]\/90 {
+  background-color: #F8F1EB !important;
+}
+
+html.light .bg-\[\#2E182B\] {
+  background-color: #F2E5DC !important;
+}
+
+html.light .bg-\[\#2A1627\] {
+  background-color: #F5EAE3 !important;
+}
+
+html.light .bg-\[\#301A2C\] {
+  background-color: #EFE0D7 !important;
+}
+
+/* Light Gradient Banner Overrides */
+html.light .from-\[\#2A1627\] {
+  --tw-gradient-from: #F6ECE5 var(--tw-gradient-from-position) !important;
+}
+html.light .via-\[\#200E1D\] {
+  --tw-gradient-via: #EFE2D8 var(--tw-gradient-to-position) !important;
+}
+html.light .to-\[\#1C101A\] {
+  --tw-gradient-to: #FFFFFF var(--tw-gradient-to-position) !important;
+}
+
+/* Light Typography & Contrast Overrides */
+html.light .text-\[\#FFF6F2\],
+html.light .text-white {
+  color: #1C101A !important;
+}
+
+html.light .text-\[\#D8C6C0\],
+html.light .text-\[\#F5EBE6\] {
+  color: #55444E !important;
+}
+
+html.light .text-\[\#F2A99B\] {
+  color: #B55242 !important;
+}
+
+html.light .text-\[\#E18E7E\] {
+  color: #C97262 !important;
+}
+
+/* Light Borders & Dividers */
+html.light .border-\[\#E18E7E\]\/30,
+html.light .border-\[\#E18E7E\]\/25,
+html.light .border-\[\#E18E7E\]\/20,
+html.light .border-\[\#E18E7E\]\/15,
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: rgba(201, 114, 98, 0.28) !important;
+}
+
+html.light .border-\[\#E18E7E\] {
+  border-color: #C97262 !important;
+}
+
+/* Light Glows & Flares */
+html.light .bg-\[\#E18E7E\]\/15,
+html.light .bg-\[\#E18E7E\]\/20,
+html.light .bg-\[\#E18E7E\]\/10 {
+  background-color: rgba(201, 114, 98, 0.08) !important;
+}
+
+/* Light Big Hero "PORTFOLIO" Heading */
+html.light h1.text-\[\#E18E7E\]\/75 {
+  color: rgba(201, 114, 98, 0.18) !important;
+}
+
+/* Light Pill Button */
+html.light .bg-\[\#E18E7E\] {
+  background-color: #C97262 !important;
+  color: #FFFFFF !important;
+}
+html.light .bg-\[\#E18E7E\]:hover {
+  background-color: #B55242 !important;
+}
