@@ -154,19 +154,36 @@ export default function SkillsSection({ skills }) {
                   </span>
                 </div>
 
-                {/* Skills Tags List */}
+                {/* Skills Tags List with Animated Interactive Stacks */}
                 <div className="flex flex-wrap gap-2 pt-1">
                   {cat.skills.map((skill, sIdx) => (
-                    <span
+                    <motion.div
                       key={sIdx}
-                      className={`px-3 py-1.5 rounded-xl border transition-all text-xs font-sans font-medium leading-relaxed ${
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: sIdx * 0.04 }}
+                      whileHover={{ 
+                        y: -3, 
+                        scale: 1.05, 
+                        transition: { type: "spring", stiffness: 450, damping: 15 } 
+                      }}
+                      whileTap={{ scale: 0.96 }}
+                      className={`relative px-3 py-1.5 rounded-xl border text-xs font-sans font-medium leading-relaxed cursor-pointer select-none transition-all duration-300 group/pill flex items-center gap-1.5 overflow-hidden ${
                         isFeatured
-                          ? 'bg-[#2E182B] border-[#E18E7E]/35 text-[#FFF6F2] hover:border-[#E18E7E] hover:bg-[#381D34]'
-                          : 'bg-[#251422]/90 border-[#E18E7E]/20 text-[#D8C6C0] hover:text-white hover:border-[#E18E7E]/60'
+                          ? 'bg-[#2E182B] border-[#E18E7E]/40 text-[#FFF6F2] hover:border-[#E18E7E] hover:bg-gradient-to-r hover:from-[#3D1E39] hover:to-[#2E182B] hover:shadow-[0_4px_16px_rgba(225,142,126,0.35)]'
+                          : 'bg-[#251422]/90 border-[#E18E7E]/20 text-[#D8C6C0] hover:text-[#FFF6F2] hover:border-[#E18E7E]/80 hover:bg-gradient-to-r hover:from-[#331B2F] hover:to-[#251422] hover:shadow-[0_4px_14px_rgba(225,142,126,0.25)]'
                       }`}
                     >
-                      {skill}
-                    </span>
+                      {/* Animated Glowing Accent Dot */}
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E18E7E]/60 group-hover/pill:bg-[#F2A99B] group-hover/pill:scale-125 group-hover/pill:shadow-[0_0_8px_#E18E7E] transition-all duration-300 shrink-0" />
+                      
+                      {/* Text */}
+                      <span className="relative z-10">{skill}</span>
+
+                      {/* Subtle Shimmer Glint on Hover */}
+                      <div className="absolute inset-0 -translate-x-full group-hover/pill:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+                    </motion.div>
                   ))}
                 </div>
               </div>

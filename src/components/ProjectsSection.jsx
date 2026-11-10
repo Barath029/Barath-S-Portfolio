@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, Globe, Layers, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export default function ProjectsSection({ projects }) {
@@ -118,15 +119,23 @@ export default function ProjectsSection({ projects }) {
                 </div>
               </div>
 
-              {/* Technologies Pill Row */}
-              <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-1.5">
+              {/* Technologies Pill Row with Animated Stacks */}
+              <div className="mt-6 pt-4 border-t border-[#E18E7E]/15 flex flex-wrap gap-2">
                 {techList.map((t, tIdx) => (
-                  <span
+                  <motion.div
                     key={tIdx}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#251422] text-[#F2A99B] border border-[#E18E7E]/20"
+                    whileHover={{ 
+                      y: -2.5, 
+                      scale: 1.06, 
+                      transition: { type: "spring", stiffness: 450, damping: 15 } 
+                    }}
+                    whileTap={{ scale: 0.96 }}
+                    className="relative text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[#251422] text-[#F2A99B] border border-[#E18E7E]/25 hover:border-[#E18E7E] hover:text-[#FFF6F2] hover:bg-gradient-to-r hover:from-[#351A31] hover:to-[#251422] hover:shadow-[0_4px_12px_rgba(225,142,126,0.25)] transition-all cursor-pointer flex items-center gap-1.5 group/pill overflow-hidden select-none"
                   >
-                    {t}
-                  </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E18E7E]/60 group-hover/pill:bg-[#F2A99B] group-hover/pill:scale-125 transition-transform shrink-0" />
+                    <span className="relative z-10">{t}</span>
+                    <div className="absolute inset-0 -translate-x-full group-hover/pill:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+                  </motion.div>
                 ))}
               </div>
             </div>

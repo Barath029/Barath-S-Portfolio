@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Briefcase, Building2 } from 'lucide-react';
 
 export default function ExperienceSection({ experience }) {
@@ -70,16 +71,32 @@ export default function ExperienceSection({ experience }) {
               </ul>
             </div>
 
-            {/* Skills / Tech Footer Tags */}
+            {/* Skills / Tech Footer Tags with Animated Interactive Stacks */}
             {item.skills && item.skills.length > 0 && (
-              <div className="mt-6 pt-5 border-t border-[#E18E7E]/15 flex flex-wrap gap-1.5">
+              <div className="mt-6 pt-5 border-t border-[#E18E7E]/15 flex flex-wrap gap-2">
                 {item.skills.map((skill, sIdx) => (
-                  <span
+                  <motion.div
                     key={sIdx}
-                    className="px-2.5 py-1 rounded-lg bg-[#251422] border border-[#E18E7E]/25 text-[11px] font-mono text-[#E18E7E] font-medium"
+                    initial={{ opacity: 0, y: 6 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: sIdx * 0.05 }}
+                    whileHover={{ 
+                      y: -3, 
+                      scale: 1.06, 
+                      transition: { type: "spring", stiffness: 450, damping: 15 } 
+                    }}
+                    whileTap={{ scale: 0.96 }}
+                    className="relative px-3 py-1.5 rounded-xl bg-[#251422] border border-[#E18E7E]/30 text-xs font-mono text-[#F2A99B] font-medium cursor-pointer select-none transition-all duration-300 hover:border-[#E18E7E] hover:text-[#FFF6F2] hover:bg-gradient-to-r hover:from-[#351A31] hover:to-[#251422] hover:shadow-[0_4px_14px_rgba(225,142,126,0.3)] flex items-center gap-1.5 overflow-hidden group/pill"
                   >
-                    {skill}
-                  </span>
+                    {/* Glowing Micro-dot */}
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E18E7E] group-hover/pill:bg-[#F2A99B] group-hover/pill:scale-125 group-hover/pill:shadow-[0_0_8px_#E18E7E] transition-all duration-300 shrink-0" />
+                    
+                    <span className="relative z-10">{skill}</span>
+
+                    {/* Shimmer Glint Reflection */}
+                    <div className="absolute inset-0 -translate-x-full group-hover/pill:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                  </motion.div>
                 ))}
               </div>
             )}
