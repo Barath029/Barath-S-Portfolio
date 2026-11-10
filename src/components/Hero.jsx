@@ -45,7 +45,7 @@ export default function Hero({ profile }) {
         {/* Top Editorial Small Meta Bar */}
         <div className="relative z-10 flex items-center justify-between text-[11px] font-mono tracking-widest text-[#E18E7E] uppercase pb-4 mb-2 border-b border-[#E18E7E]/15">
           <span>AI SYSTEMS ARCHITECT & ML ENGINEER</span>
-          <span className="hidden sm:inline">RIT LABS • CHENNAI • VOL. 2026</span>
+          <span className="hidden sm:inline">CHENNAI, TAMIL NADU • 2026</span>
         </div>
 
         {/* Giant Condensed "PORTFOLIO" Heading in Rose Gold (Marina Voss Signature) */}

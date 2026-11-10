@@ -203,10 +203,13 @@ export default function AboutSection({ about }) {
           </div>
         </div>
 
-        {/* Current Research Focus (4 Cols) */}
-        <div className="md:col-span-4 p-6 sm:p-7 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 flex flex-col justify-between shadow-editorial">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#E18E7E]/20">
+        {/* Current Focus (4 Cols) */}
+        <div className="md:col-span-4 p-6 sm:p-7 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 flex flex-col justify-between shadow-editorial relative overflow-hidden group">
+          {/* Subtle Ambient Glow */}
+          <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-[#E18E7E]/10 group-hover:bg-[#E18E7E]/20 transition-all blur-2xl pointer-events-none" />
+
+          <div className="space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E18E7E]/20">
               <span className="flex items-center gap-1.5 text-xs font-mono text-[#F2A99B] font-bold uppercase">
                 <Zap className="w-4 h-4 text-[#E18E7E]" />
                 <span>ACTIVE FOCUS</span>
@@ -214,13 +217,47 @@ export default function AboutSection({ about }) {
               <span className="w-2.5 h-2.5 rounded-full bg-[#E18E7E] animate-pulse" />
             </div>
 
-            <p className="text-xs sm:text-sm text-[#D8C6C0] leading-relaxed font-sans font-light mb-4">
-              {about.currentFocus}
+            <p className="text-xs sm:text-sm text-[#FFF6F2] font-sans font-medium leading-relaxed">
+              {typeof about.currentFocus === 'object' ? about.currentFocus.tagline : about.currentFocus}
             </p>
+
+            {/* Focus Initiatives */}
+            {about.currentFocus?.areas && (
+              <div className="space-y-2.5 pt-1">
+                {about.currentFocus.areas.map((item, idx) => (
+                  <div key={idx} className="p-3 rounded-2xl bg-[#251422]/80 border border-[#E18E7E]/20 hover:border-[#E18E7E]/50 transition-all">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E18E7E] shrink-0" />
+                      <h4 className="text-xs font-poppins font-bold text-white uppercase tracking-wider">
+                        {item.title}
+                      </h4>
+                    </div>
+                    <p className="text-[11px] text-[#D8C6C0] font-sans leading-relaxed pl-3.5">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Focus Tags */}
+            {about.currentFocus?.tags && (
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {about.currentFocus.tags.map((tag, tIdx) => (
+                  <span
+                    key={tIdx}
+                    className="px-2.5 py-1 rounded-lg bg-[#251422] border border-[#E18E7E]/25 text-[10px] font-mono text-[#F2A99B]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-[#E18E7E]/20 text-[11px] font-mono text-[#D8C6C0]">
-            <span>Focus: Real-Time Schedulers & Multi-Agent Constraint Solving</span>
+          <div className="pt-4 mt-4 border-t border-[#E18E7E]/20 text-[11px] font-mono text-[#D8C6C0] flex items-center justify-between">
+            <span className="text-[#F2A99B]">● {about.currentFocus?.status || 'Active Engineering'}</span>
+            <span className="text-[#E18E7E]">2026</span>
           </div>
         </div>
 

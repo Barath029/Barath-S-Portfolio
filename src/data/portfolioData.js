@@ -76,7 +76,25 @@ export const portfolioData = {
         badge: "Secondary School"
       }
     ],
-    currentFocus: "Researching autonomous multi-agent scheduling algorithms and real-time inference latency reduction."
+    currentFocus: {
+      tagline: "Engineering intelligent constraint schedulers, full-stack web platforms, and automated QA verification pipelines.",
+      areas: [
+        {
+          title: "Constraint Optimization Schedulers",
+          detail: "Designing algorithmic engines (RailSphere & SmartEdu) for conflict-free railway track dispatch and institutional resource allocation."
+        },
+        {
+          title: "Full-Stack Web Architectures",
+          detail: "Building responsive, production-ready web platforms with React, Node.js, and cloud databases (MySQL, MongoDB, Supabase)."
+        },
+        {
+          title: "QA Automation & Beta Testing",
+          detail: "Conducting systematic beta testing, feature validation, and edge-case failure diagnosis across live SaaS products."
+        }
+      ],
+      tags: ["Constraint Algorithms", "Full-Stack Dev", "Beta Testing", "AI-Assisted Coding"],
+      status: "Active Engineering & Optimization"
+    }
   },
 
   projects: [
