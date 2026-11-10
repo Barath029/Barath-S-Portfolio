@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Minimalist Dark Portfolio with Draggable Objectives
 
 A high-performance developer portfolio built with **React**, **Tailwind CSS**, and **Framer Motion**, featuring an ultra-dark theme (`#090A0F`), high-voltage neon highlights (`#00F5D4` Neon Cyan, `#CCFF00` Acid Lime), and interactive drag-and-drop canvas capabilities.
@@ -76,3 +77,6 @@ All data is decoupled into [portfolioData.js](file:///d:/PLACEMENT/Portfolio/src
 * Technical skill categories and proficiency levels
 * Hackathons, speaking engagements, and awards
 
+=======
+# Barath-S-Portfolio
+>>>>>>> 15b09cedec9e7c2aa5bcac1e56133f61ff172aaf
