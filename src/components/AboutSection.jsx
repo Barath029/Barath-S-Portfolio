@@ -225,14 +225,14 @@ export default function AboutSection({ about }) {
             {about.currentFocus?.areas && (
               <div className="space-y-2.5 pt-1">
                 {about.currentFocus.areas.map((item, idx) => (
-                  <div key={idx} className="p-3 rounded-2xl bg-[#251422]/80 border border-[#E18E7E]/20 hover:border-[#E18E7E]/50 transition-all">
+                  <div key={idx} className="p-3.5 rounded-2xl bg-[#251422] border border-[#E18E7E]/20 hover:border-[#E18E7E]/50 transition-all">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E18E7E] shrink-0" />
                       <h4 className="text-xs font-poppins font-bold text-white uppercase tracking-wider">
                         {item.title}
                       </h4>
                     </div>
-                    <p className="text-[11px] text-[#D8C6C0] font-sans leading-relaxed pl-3.5">
+                    <p className="text-xs text-[#D8C6C0] font-sans font-normal leading-relaxed pl-3.5 mt-1">
                       {item.detail}
                     </p>
                   </div>

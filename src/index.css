@@ -68,7 +68,11 @@ html.light .bg-\[\#1C101A\]\/75 {
 }
 
 html.light .bg-\[\#251422\],
-html.light .bg-\[\#251422\]\/90 {
+html.light .bg-\[\#251422\]\/90,
+html.light .bg-\[\#251422\]\/85,
+html.light .bg-\[\#251422\]\/80,
+html.light .bg-\[\#251422\]\/75,
+html.light .bg-\[\#251422\]\/70 {
   background-color: #F8F1EB !important;
 }
 
@@ -103,7 +107,7 @@ html.light .text-white {
 
 html.light .text-\[\#D8C6C0\],
 html.light .text-\[\#F5EBE6\] {
-  color: #55444E !important;
+  color: #3E3038 !important;
 }
 
 html.light .text-\[\#F2A99B\] {
