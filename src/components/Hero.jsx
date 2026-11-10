@@ -121,23 +121,25 @@ export default function Hero({ profile }) {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.7 }}
-              className="relative w-full max-w-md sm:max-w-lg h-[460px] sm:h-[520px] flex items-end justify-center z-10"
+              className="relative w-full max-w-md sm:max-w-lg h-[340px] sm:h-[460px] lg:h-[520px] flex items-end justify-center z-10"
             >
               <div className="relative w-full h-full rounded-2xl overflow-hidden flex items-end justify-center">
                 <img
                   src={imgSrc}
                   alt={profile.name}
+                  loading="eager"
+                  decoding="async"
                   onError={() => setImgSrc('/images/barath_new_web.jpg')}
                   className="w-full h-full object-cover object-top rounded-2xl filter contrast-[1.08] brightness-105 drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)]"
                 />
 
                 {/* Subtle gradient overlay at bottom to merge into card base */}
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1C101A] via-[#1C101A]/50 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 bg-gradient-to-t from-[#1C101A] via-[#1C101A]/50 to-transparent pointer-events-none" />
               </div>
             </motion.div>
 
             {/* Bottom Meta Pill under portrait */}
-            <div className="w-full max-w-md flex items-center justify-between text-xs font-mono text-[#D8C6C0] px-4 py-2.5 rounded-xl bg-[#130911]/90 border border-[#E18E7E]/30 mt-3 shadow-lg">
+            <div className="w-full max-w-md flex flex-col sm:flex-row items-center sm:justify-between text-center sm:text-left gap-1.5 sm:gap-0 text-[11px] sm:text-xs font-mono text-[#D8C6C0] px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#130911]/90 border border-[#E18E7E]/30 mt-3 shadow-lg">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#E18E7E]" />
                 <span>BASED IN CHENNAI, INDIA</span>

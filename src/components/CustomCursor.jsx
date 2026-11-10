@@ -75,6 +75,9 @@ export default function CustomCursor() {
   }, [isVisible, mouseX, mouseY]);
 
   if (!isVisible) return null;
+  if (typeof window !== 'undefined' && (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768)) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">

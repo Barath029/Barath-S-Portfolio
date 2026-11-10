@@ -176,7 +176,7 @@ export default function Footer({ profile }) {
             Instagram | LinkedIn | GitHub | WhatsApp | Email
             ●
             Barath S — Portfolio
-            © 2026 Barath S. Crafted with React & Tailwind CSS.
+            © 2026 Barath S.
             Chennai, Tamil Nadu
         ========================================================================= */}
         <div className="pt-12 border-t border-[#E18E7E]/20 flex flex-col items-center justify-center text-center space-y-4">
@@ -236,7 +236,7 @@ export default function Footer({ profile }) {
           {/* Credits & Clean Location (Institution Removed per user request) */}
           <div className="space-y-1.5 pt-0.5 text-xs sm:text-sm font-sans text-[#D8C6C0]">
             <p>
-              © {new Date().getFullYear()} Barath S. Crafted with React & Tailwind CSS.
+              © {new Date().getFullYear()} Barath S.
             </p>
             <div className="flex items-center justify-center gap-1.5 text-xs font-mono text-[#F2A99B] pt-0.5">
               <MapPin className="w-3.5 h-3.5 text-[#E18E7E]" />

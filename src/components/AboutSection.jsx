@@ -25,7 +25,7 @@ export default function AboutSection({ about }) {
       </div>
 
       {/* Featured Shaped Cathedral Cameo Frame with Dramatic Spotlight */}
-      <div className="p-8 sm:p-11 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 relative overflow-hidden shadow-editorial grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div className="p-5 sm:p-8 lg:p-11 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 relative overflow-hidden shadow-editorial grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
         
         {/* Ambient Radial Spotlight */}
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 rounded-full bg-[#E18E7E]/20 blur-[120px] pointer-events-none" />
@@ -35,7 +35,7 @@ export default function AboutSection({ about }) {
           
           <div 
             onClick={() => setShowSpotlightModal(true)}
-            className="relative w-64 h-84 sm:w-76 sm:h-[400px] rounded-t-full rounded-b-3xl p-2.5 bg-gradient-to-b from-[#E18E7E]/40 via-[#2A1627] to-[#130911] border-2 border-[#E18E7E] shadow-2xl overflow-hidden flex items-end justify-center group cursor-pointer"
+            className="relative w-60 h-80 sm:w-76 sm:h-[400px] rounded-t-full rounded-b-3xl p-2.5 bg-gradient-to-b from-[#E18E7E]/40 via-[#2A1627] to-[#130911] border-2 border-[#E18E7E] shadow-2xl overflow-hidden flex items-end justify-center group cursor-pointer"
             title="Click to view spotlight popup"
           >
             {/* Dynamic Spotlight Glow Aura */}
@@ -46,6 +46,8 @@ export default function AboutSection({ about }) {
             <img
               src={imgSrc}
               alt="Barath S. - Aspiring AI & ML Engineer"
+              loading="lazy"
+              decoding="async"
               onError={() => setImgSrc('/images/barath_arch_spotlight.jpg')}
               className="relative z-10 w-full h-full object-cover object-top rounded-t-full rounded-b-2xl filter contrast-[1.06] brightness-105 group-hover:scale-106 group-hover:-translate-y-1 transition-all duration-500 drop-shadow-[0_20px_35px_rgba(225,142,126,0.35)]"
             />

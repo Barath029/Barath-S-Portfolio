@@ -190,6 +190,7 @@ export default function GallerySection() {
                   alt={item.title}
                   className="w-full h-full object-cover object-center filter contrast-[1.04] brightness-100 group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
+                  decoding="async"
                 />
                 
                 {/* Subtle Gradient Vignette */}
