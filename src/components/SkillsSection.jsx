@@ -11,6 +11,7 @@ import {
   Sparkles,
   Layers
 } from 'lucide-react';
+import { ScrollSection, CinematicHeading, StaggerContainer, StaggerItem, GlassGlowCard } from '../animations';
 
 export default function SkillsSection({ skills }) {
   const categories = skills?.categories || [
@@ -70,14 +71,15 @@ export default function SkillsSection({ skills }) {
     {
       id: "professional",
       title: "Professional Skills",
-      badge: "LEADERSHIP & OPERATIONS",
+      badge: "COLLABORATION & LEADERSHIP",
       icon: <Users className="w-4 h-4 text-[#E18E7E]" />,
       skills: [
         "Team Leadership",
         "Project Management",
         "Client Handling",
         "Public Speaking",
-        "Problem Solving"
+        "Problem Solving",
+        "Good Communication"
       ]
     }
   ];
@@ -104,7 +106,7 @@ export default function SkillsSection({ skills }) {
   };
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-8 max-w-7xl mx-auto font-sans">
+    <ScrollSection id="skills" className="py-20 px-4 sm:px-8 max-w-7xl mx-auto font-sans">
       
       {/* Section Header (Marina Voss Editorial Style) */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#E18E7E]/20 pb-5 mb-10">
@@ -113,9 +115,9 @@ export default function SkillsSection({ skills }) {
             <Sparkles className="w-3.5 h-3.5 text-[#E18E7E]" />
             03 // TECHNICAL TOOLING & CATEGORIZED SKILLS
           </span>
-          <h2 className="text-3xl sm:text-5xl font-poppins font-black uppercase text-[#FFF6F2] mt-2 tracking-tight">
+          <CinematicHeading as="h2" className="text-3xl sm:text-5xl font-poppins font-black uppercase text-[#FFF6F2] mt-2 tracking-tight">
             Skills & Tooling
-          </h2>
+          </CinematicHeading>
         </div>
         <p className="text-xs font-mono text-[#D8C6C0] max-w-md">
           TECHNICAL STACK, PROGRAMMING LANGUAGES & SPECIALIZED DOMAINS
@@ -123,81 +125,82 @@ export default function SkillsSection({ skills }) {
       </div>
 
       {/* Categorized Skills Grid (Zero Evaluation Bars - Clean Category & Tag Presentation) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.map((cat, idx) => {
           const isFeatured = cat.id === 'ai-ml';
 
           return (
-            <div
-              key={cat.id || idx}
-              className={`p-6 sm:p-7 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 hover:border-[#E18E7E]/80 transition-all duration-300 flex flex-col justify-between shadow-editorial relative overflow-hidden group ${
-                isFeatured ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-[#251422] to-[#1C101A] border-[#E18E7E]/50' : ''
-              }`}
-            >
-              {/* Corner Ambient Flare */}
-              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-[#E18E7E]/10 group-hover:bg-[#E18E7E]/20 transition-all blur-2xl pointer-events-none" />
+            <StaggerItem key={cat.id || idx} className={`h-full ${isFeatured ? 'md:col-span-2 lg:col-span-2' : ''}`}>
+              <GlassGlowCard
+                className={`p-6 sm:p-7 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 flex flex-col justify-between shadow-editorial relative overflow-hidden group h-full ${
+                  isFeatured ? 'bg-gradient-to-br from-[#251422] to-[#1C101A] border-[#E18E7E]/50' : ''
+                }`}
+              >
+                {/* Corner Ambient Flare */}
+                <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-[#E18E7E]/10 group-hover:bg-[#E18E7E]/20 transition-all blur-2xl pointer-events-none" />
 
-              <div>
-                {/* Header: Icon, Category Name, and Badge */}
-                <div className="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-[#E18E7E]/15">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-xl bg-[#251422] border border-[#E18E7E]/30 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                      {getCategoryIcon(cat.id)}
+                <div>
+                  {/* Header: Icon, Category Name, and Badge */}
+                  <div className="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-[#E18E7E]/15">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-[#251422] border border-[#E18E7E]/30 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                        {getCategoryIcon(cat.id)}
+                      </div>
+                      <h3 className="font-poppins font-bold text-base sm:text-lg text-white group-hover:text-[#F2A99B] transition-colors tracking-wide">
+                        {cat.title}
+                      </h3>
                     </div>
-                    <h3 className="font-poppins font-bold text-base sm:text-lg text-white group-hover:text-[#F2A99B] transition-colors tracking-wide">
-                      {cat.title}
-                    </h3>
+
+                    <span className="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-[#251422] text-[#F2A99B] border border-[#E18E7E]/30 uppercase font-bold tracking-wider shrink-0">
+                      {cat.badge}
+                    </span>
                   </div>
 
-                  <span className="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-[#251422] text-[#F2A99B] border border-[#E18E7E]/30 uppercase font-bold tracking-wider shrink-0">
-                    {cat.badge}
-                  </span>
+                  {/* Skills Tags List with Animated Interactive Stacks */}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {cat.skills.map((skill, sIdx) => (
+                      <motion.div
+                        key={sIdx}
+                        initial={{ opacity: 0, y: 8 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.35, delay: sIdx * 0.04 }}
+                        whileHover={{ 
+                          y: -3, 
+                          scale: 1.05, 
+                          transition: { type: "spring", stiffness: 450, damping: 15 } 
+                        }}
+                        whileTap={{ scale: 0.96 }}
+                        className={`relative px-3 py-1.5 rounded-xl border text-xs font-sans font-medium leading-relaxed cursor-pointer select-none transition-all duration-300 group/pill flex items-center gap-1.5 overflow-hidden ${
+                          isFeatured
+                            ? 'bg-[#2E182B] border-[#E18E7E]/40 text-[#FFF6F2] hover:border-[#E0506B] hover:bg-gradient-to-r hover:from-[#3D1E39] hover:to-[#2E182B] hover:shadow-[0_4px_16px_rgba(224,80,107,0.35)]'
+                            : 'bg-[#251422]/90 border-[#E18E7E]/20 text-[#D8C6C0] hover:text-[#FFF6F2] hover:border-[#E0506B]/80 hover:bg-gradient-to-r hover:from-[#331B2F] hover:to-[#251422] hover:shadow-[0_4px_14px_rgba(109,0,26,0.45)]'
+                        }`}
+                      >
+                        {/* Animated Glowing Accent Dot */}
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#E18E7E]/60 group-hover/pill:bg-[#F2A99B] group-hover/pill:scale-125 group-hover/pill:shadow-[0_0_8px_#E18E7E] transition-all duration-300 shrink-0" />
+                        
+                        {/* Text */}
+                        <span className="relative z-10">{skill}</span>
+
+                        {/* Subtle Shimmer Glint on Hover */}
+                        <div className="absolute inset-0 -translate-x-full group-hover/pill:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Skills Tags List with Animated Interactive Stacks */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {cat.skills.map((skill, sIdx) => (
-                    <motion.div
-                      key={sIdx}
-                      initial={{ opacity: 0, y: 8 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.35, delay: sIdx * 0.04 }}
-                      whileHover={{ 
-                        y: -3, 
-                        scale: 1.05, 
-                        transition: { type: "spring", stiffness: 450, damping: 15 } 
-                      }}
-                      whileTap={{ scale: 0.96 }}
-                      className={`relative px-3 py-1.5 rounded-xl border text-xs font-sans font-medium leading-relaxed cursor-pointer select-none transition-all duration-300 group/pill flex items-center gap-1.5 overflow-hidden ${
-                        isFeatured
-                          ? 'bg-[#2E182B] border-[#E18E7E]/40 text-[#FFF6F2] hover:border-[#E18E7E] hover:bg-gradient-to-r hover:from-[#3D1E39] hover:to-[#2E182B] hover:shadow-[0_4px_16px_rgba(225,142,126,0.35)]'
-                          : 'bg-[#251422]/90 border-[#E18E7E]/20 text-[#D8C6C0] hover:text-[#FFF6F2] hover:border-[#E18E7E]/80 hover:bg-gradient-to-r hover:from-[#331B2F] hover:to-[#251422] hover:shadow-[0_4px_14px_rgba(225,142,126,0.25)]'
-                      }`}
-                    >
-                      {/* Animated Glowing Accent Dot */}
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E18E7E]/60 group-hover/pill:bg-[#F2A99B] group-hover/pill:scale-125 group-hover/pill:shadow-[0_0_8px_#E18E7E] transition-all duration-300 shrink-0" />
-                      
-                      {/* Text */}
-                      <span className="relative z-10">{skill}</span>
-
-                      {/* Subtle Shimmer Glint on Hover */}
-                      <div className="absolute inset-0 -translate-x-full group-hover/pill:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
-                    </motion.div>
-                  ))}
+                {/* Bottom Subtle Meta Counter */}
+                <div className="mt-5 pt-3.5 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-[#D8C6C0]">
+                  <span>{cat.skills.length} Skills</span>
+                  <span className="text-[#E18E7E] group-hover:translate-x-0.5 transition-transform">↗</span>
                 </div>
-              </div>
-
-              {/* Bottom Subtle Meta Counter */}
-              <div className="mt-5 pt-3.5 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-[#D8C6C0]">
-                <span>{cat.skills.length} Skills</span>
-                <span className="text-[#E18E7E] group-hover:translate-x-0.5 transition-transform">↗</span>
-              </div>
-            </div>
+              </GlassGlowCard>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
 
-    </section>
+    </ScrollSection>
   );
 }

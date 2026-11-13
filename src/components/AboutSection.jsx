@@ -1,12 +1,125 @@
 import React, { useState } from 'react';
-import { GraduationCap, Zap, CheckCircle2, Sparkles, MapPin, Landmark, Calendar, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  GraduationCap,
+  Zap,
+  CheckCircle2,
+  Sparkles,
+  MapPin,
+  Landmark,
+  Calendar,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ArrowUpRight,
+  ShieldCheck,
+  Cpu,
+  Layers,
+  Code2
+} from 'lucide-react';
+import {
+  ScrollSection,
+  CinematicHeading,
+  KineticText,
+  GlassGlowCard,
+  CountUpNumber,
+  TimelineDrawLine,
+  PulsingDot,
+  Magnetic
+} from '../animations';
 
 export default function AboutSection({ about }) {
-  const [imgSrc, setImgSrc] = useState('/images/barath_arch_spotlight.png');
+  // Swiping Image Carousel State
+  const [[page, direction], setPage] = useState([0, 0]);
   const [showSpotlightModal, setShowSpotlightModal] = useState(false);
 
+  const swipeImages = [
+    {
+      src: '/images/about_gallery/barath_about_1.jpg',
+      title: 'Barath S. — Systems Engineer',
+      caption: 'Shore Temple • Mahabalipuram',
+      tag: 'ARCHITECTURAL VISION'
+    },
+    {
+      src: '/images/about_gallery/barath_about_2.jpg',
+      title: 'Barath S. — AI & ML Engineer',
+      caption: 'Campus Innovation & Technical Community',
+      tag: 'ENGINEERING EXCELLENCE'
+    },
+    {
+      src: '/images/about_gallery/barath_about_3.jpg',
+      title: 'Barath S. — Student Executive',
+      caption: '10+ Hackathons & Technical Sprints',
+      tag: 'TECHSPARK VP'
+    },
+    {
+      src: '/images/about_gallery/barath_about_4.jpg',
+      title: 'Barath S. — Full-Stack Builder',
+      caption: 'Constraint Algorithms & Scalable Platforms',
+      tag: 'SYSTEMS BUILDER'
+    }
+  ];
+
+  const imageIndex = ((page % swipeImages.length) + swipeImages.length) % swipeImages.length;
+
+  const paginate = (newDirection) => {
+    setPage([page + newDirection, newDirection]);
+  };
+
+  const slideVariants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 260 : -260,
+      opacity: 0,
+      scale: 0.96
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 320, damping: 30 },
+        opacity: { duration: 0.28 },
+        scale: { duration: 0.28 }
+      }
+    },
+    exit: (dir) => ({
+      zIndex: 0,
+      x: dir < 0 ? 260 : -260,
+      opacity: 0,
+      scale: 0.96,
+      transition: {
+        x: { type: 'spring', stiffness: 320, damping: 30 },
+        opacity: { duration: 0.22 }
+      }
+    })
+  };
+
+  // Tech stack moving at 1x speed circular list
+  const techStackItems = [
+    "Python",
+    "React.js",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "MySQL",
+    "PostgreSQL",
+    "REST APIs",
+    "Beta Testing",
+    "JavaScript",
+    "C++",
+    "Java",
+    "Git",
+    "GitHub",
+    "Tailwind CSS",
+    "Constraint Schedulers"
+  ];
+
+  // Duplicate for seamless 1x circular marquee loop
+  const marqueeItems = [...techStackItems, ...techStackItems];
+
   return (
-    <section id="about" className="py-20 px-4 sm:px-8 max-w-7xl mx-auto space-y-12 font-sans">
+    <ScrollSection id="about" className="py-20 px-4 sm:px-8 max-w-7xl mx-auto space-y-12 font-sans">
       
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#E18E7E]/20 pb-4">
@@ -15,106 +128,217 @@ export default function AboutSection({ about }) {
             <Landmark className="w-3.5 h-3.5 text-[#E18E7E]" />
             01 // BACKGROUND & PERSONA
           </span>
-          <h2 className="text-2xl sm:text-4xl font-poppins font-extrabold uppercase text-[#FFF6F2] mt-1">
-            About & System Philosophy
-          </h2>
+          <CinematicHeading as="h2" className="text-3xl sm:text-5xl font-poppins font-black uppercase text-[#FFF6F2] mt-1 tracking-tight">
+            About <span className="font-serif italic font-normal text-[#E0506B] lowercase">Me</span>
+          </CinematicHeading>
         </div>
         <p className="text-xs font-mono text-[#D8C6C0]">
           Chennai, Tamil Nadu • Artificial Intelligence & Machine Learning
         </p>
       </div>
 
-      {/* Featured Shaped Cathedral Cameo Frame with Dramatic Spotlight */}
-      <div className="p-5 sm:p-8 lg:p-11 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 relative overflow-hidden shadow-editorial grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+      {/* =========================================================================
+          HERO PROFILE SHOWCASE: INTERACTIVE SWIPE CAROUSEL + EDITORIAL BIO & MOVING TECH STACK
+      ========================================================================= */}
+      <div className="p-5 sm:p-8 lg:p-10 rounded-3xl bg-[#1C101A] border border-[#E18E7E]/30 relative overflow-hidden shadow-editorial grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         
         {/* Ambient Radial Spotlight */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 rounded-full bg-[#E18E7E]/20 blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 rounded-full bg-[#6D001A]/25 blur-[120px] pointer-events-none" />
 
-        {/* Left Column: Shaped Profile Icon Frame with Barath Portrait & Spotlight Popup */}
+        {/* Left Column: Interactive Swipeable Photo Card (Full-Cover Photo Showcase) */}
         <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
           
           <div 
             onClick={() => setShowSpotlightModal(true)}
-            className="relative w-60 h-80 sm:w-76 sm:h-[400px] rounded-t-full rounded-b-3xl p-2.5 bg-gradient-to-b from-[#E18E7E]/40 via-[#2A1627] to-[#130911] border-2 border-[#E18E7E] shadow-2xl overflow-hidden flex items-end justify-center group cursor-pointer"
-            title="Click to view spotlight popup"
+            className="relative w-full max-w-[340px] sm:max-w-[380px] h-[450px] sm:h-[490px] rounded-3xl border-2 border-[#E18E7E]/50 shadow-2xl overflow-hidden group select-none cursor-grab active:cursor-grabbing bg-[#130911]"
+            title="Drag or swipe to view next photo • Click for full-screen spotlight"
           >
-            {/* Dynamic Spotlight Glow Aura */}
-            <div className="absolute top-12 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full bg-[#E18E7E]/30 blur-2xl pointer-events-none group-hover:scale-130 group-hover:bg-[#E18E7E]/50 transition-all duration-700" />
-            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-[#F2A99B]/40 blur-xl pointer-events-none group-hover:scale-120 transition-all duration-500" />
+            {/* Full-Cover Central Swipeable Photo Frame */}
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={page}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.8}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = Math.abs(offset.x) * velocity.x;
+                  if (offset.x < -40 || swipe < -800) {
+                    paginate(1);
+                  } else if (offset.x > 40 || swipe > 800) {
+                    paginate(-1);
+                  }
+                }}
+                className="absolute inset-0 w-full h-full flex items-center justify-center"
+              >
+                <img
+                  src={swipeImages[imageIndex].src}
+                  alt={swipeImages[imageIndex].title}
+                  draggable={false}
+                  className="w-full h-full object-cover object-top filter contrast-[1.05] brightness-100 transition-all duration-300 pointer-events-none"
+                />
+              </motion.div>
+            </AnimatePresence>
 
-            {/* Profile Cutout Image with Website Theme Background & Spotlight Popup */}
-            <img
-              src={imgSrc}
-              alt="Barath S. - Aspiring AI & ML Engineer"
-              loading="lazy"
-              decoding="async"
-              onError={() => setImgSrc('/images/barath_arch_spotlight.jpg')}
-              className="relative z-10 w-full h-full object-cover object-top rounded-t-full rounded-b-2xl filter contrast-[1.06] brightness-105 group-hover:scale-106 group-hover:-translate-y-1 transition-all duration-500 drop-shadow-[0_20px_35px_rgba(225,142,126,0.35)]"
-            />
+            {/* Prev Button Overlay */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                paginate(-1);
+              }}
+              aria-label="Previous photo"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#130911]/80 hover:bg-[#E0506B] text-white hover:text-[#130911] border border-[#E18E7E]/40 flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm group-hover:scale-105"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
 
-            {/* Interactive Spotlight Expand Icon */}
-            <div className="absolute top-3.5 right-3.5 z-20 w-7 h-7 rounded-full bg-[#130911]/80 border border-[#E18E7E]/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
-              <Sparkles className="w-3.5 h-3.5 text-[#E18E7E]" />
+            {/* Next Button Overlay */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                paginate(1);
+              }}
+              aria-label="Next photo"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#130911]/80 hover:bg-[#E0506B] text-white hover:text-[#130911] border border-[#E18E7E]/40 flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm group-hover:scale-105"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            {/* Floating Bottom Pagination Dots Overlay */}
+            <div 
+              onClick={(e) => e.stopPropagation()}
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-[#130911]/60 backdrop-blur-md border border-white/10 shadow-lg pointer-events-auto"
+            >
+              {swipeImages.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  onClick={() => setPage([dotIdx, dotIdx > imageIndex ? 1 : -1])}
+                  aria-label={`Jump to slide ${dotIdx + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    imageIndex === dotIdx
+                      ? 'w-6 bg-[#E0506B] shadow-[0_0_8px_#E0506B]'
+                      : 'w-2 bg-white/40 hover:bg-white/80'
+                  }`}
+                />
+              ))}
             </div>
-
-            {/* Bottom Glass Name Banner */}
-            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-[#130911] via-[#130911]/85 to-transparent text-center z-20 pointer-events-none">
-              <span className="font-poppins text-lg sm:text-xl text-[#FFF6F2] font-bold block leading-tight">
-                Barath S.
-              </span>
-            </div>
-          </div>
-
-          {/* Clean Subtitle under Image (Location & Architectural removed per user request) */}
-          <div className="mt-3.5 px-4 py-1.5 rounded-full bg-[#251422] border border-[#E18E7E]/30 shadow-md">
-            <span className="text-xs font-mono text-[#F2A99B] font-semibold tracking-wide uppercase">
-              An Aspiring AI & ML Engineer
-            </span>
           </div>
         </div>
 
-        {/* Right Column: Architectural Stance Narrative */}
+        {/* Right Column: Bio Narrative, Specializations & 1x Circular Moving Tech Stack */}
         <div className="lg:col-span-7 space-y-6 text-left">
           
+          {/* Engineering Manifesto Quote */}
           <div className="space-y-2">
             <span className="text-[11px] font-mono tracking-widest text-[#F2A99B] uppercase font-bold flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#E18E7E]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#E0506B]" />
               ENGINEERING & ARCHITECTURAL MANIFESTO
             </span>
-            <h3 className="text-2xl sm:text-3xl font-poppins font-bold text-[#FFF6F2] leading-snug">
-              "Where timeless architectural principles inspire high-concurrency, fault-tolerant AI systems."
+            <h3 className="text-xl sm:text-2xl font-poppins font-bold text-[#FFF6F2] leading-snug">
+              <KineticText text="“Where timeless architectural principles inspire high-concurrency, fault-tolerant AI systems.”" />
             </h3>
           </div>
 
-          <div className="space-y-4 text-base sm:text-lg text-[#F5EBE6] font-sans font-normal leading-[1.75] tracking-wide">
-            <p>
-              I am an <strong className="font-semibold text-white border-b border-[#E18E7E]/40 pb-0.5">Artificial Intelligence & Machine Learning</strong> undergraduate 
-              at <span className="text-[#F2A99B] font-semibold">Rajalakshmi Institute of Technology</span>, 
-              passionate about solving high-complexity constraint problems and engineering autonomous, AI-driven software architectures.
-            </p>
+          {/* Bio Description */}
+          <p className="text-sm sm:text-base text-[#F5EBE6] font-sans font-normal leading-[1.75] tracking-wide">
+            I am an <strong className="font-semibold text-white border-b border-[#E18E7E]/40 pb-0.5">Artificial Intelligence & Machine Learning</strong> undergraduate 
+            at <span className="text-[#F2A99B] font-semibold">Rajalakshmi Institute of Technology</span>, 
+            passionate about solving high-complexity constraint problems and engineering autonomous, AI-driven software architectures. 
+            My work spans developing conflict-free constraint schedulers, full-stack scalable web platforms, leading campus initiatives as <span className="text-[#E0506B] font-semibold">Vice President of TechSpark</span>, and testing cutting-edge AI SaaS products.
+          </p>
 
-            <p>
-              My work spans from developing intelligent constraint schedulers and institutional slot allocation engines to leading campus technical initiatives as <span className="text-[#E18E7E] font-semibold">Vice President of TechSpark</span> and 
-              testing cutting-edge AI SaaS products before market release.
-            </p>
-          </div>
+          {/* Specializations & Certifications List */}
+          <div className="space-y-3 pt-1">
+            <h4 className="text-xs font-mono tracking-widest text-[#F2A99B] uppercase font-bold flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#E0506B] shadow-[0_0_8px_#E0506B]" />
+              <span>Specializations & Core Focus</span>
+            </h4>
 
-          {/* Tenets Cards */}
-          <div className="pt-4 border-t border-[#E18E7E]/20 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            {about.highlights.map((highlight, idx) => (
-              <div
-                key={idx}
-                className="p-3.5 rounded-2xl bg-[#251422]/90 border border-[#E18E7E]/25 hover:border-[#E18E7E]/60 transition-all flex items-start gap-3 shadow-sm"
-              >
-                <div className="w-6 h-6 rounded-lg bg-[#1C101A] border border-[#E18E7E]/40 flex items-center justify-center shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#E18E7E]" />
-                </div>
-                <span className="font-sans text-xs sm:text-sm text-[#F5EBE6] leading-relaxed font-normal">
-                  {highlight}
+            <ul className="space-y-2.5 text-xs sm:text-sm text-[#D8C6C0] font-sans">
+              <li className="flex items-start gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E0506B] mt-2 shrink-0" />
+                <span>
+                  <strong className="text-white font-semibold">Optimization & Schedulers:</strong> Algorithmic modeling, conflict-free railway track dispatch & institutional slot engines.
                 </span>
-              </div>
-            ))}
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E0506B] mt-2 shrink-0" />
+                <span>
+                  <strong className="text-white font-semibold">Full-Stack Web Architectures:</strong> Production platforms with React.js, Node.js, Express.js & cloud databases (MySQL, MongoDB).
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E0506B] mt-2 shrink-0" />
+                <span>
+                  <strong className="text-white font-semibold">QA Automation & Beta Testing:</strong> Edge-case failure diagnosis, regression suites, and live AI SaaS product validation.
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E0506B] mt-2 shrink-0" />
+                <span>
+                  <strong className="text-white font-semibold">Campus Leadership:</strong> Vice President of TechSpark; coordinated 10+ campus hackathons and technical symposiums.
+                </span>
+              </li>
+            </ul>
           </div>
+
+          {/* =========================================================================
+              TECH STACK: 1x SPEED CIRCULAR CONTINUOUS MOVING LIST
+          ========================================================================= */}
+          <div className="space-y-3 pt-2">
+            <div className="flex items-center justify-between">
+              <h4 className="text-xs font-mono tracking-widest text-[#F2A99B] uppercase font-bold flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#E0506B] shadow-[0_0_8px_#E0506B]" />
+                <span>Tech Stack</span>
+              </h4>
+            </div>
+
+            {/* Continuous Marquee Rail at 1x speed (20s loop) */}
+            <div className="relative overflow-hidden w-full py-1.5 rounded-2xl bg-[#130911]/60 border border-[#E18E7E]/20">
+              {/* Fade Masks */}
+              <div className="absolute left-0 inset-y-0 w-8 sm:w-14 bg-gradient-to-r from-[#1C101A] to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 inset-y-0 w-8 sm:w-14 bg-gradient-to-l from-[#1C101A] to-transparent z-10 pointer-events-none" />
+
+              <motion.div
+                className="flex items-center gap-2.5 whitespace-nowrap cursor-pointer"
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{
+                  ease: 'linear',
+                  duration: 20, // 1x normal continuous speed
+                  repeat: Infinity
+                }}
+                whileHover={{ animationPlayState: 'paused' }}
+              >
+                {marqueeItems.map((tech, idx) => (
+                  <div
+                    key={idx}
+                    className="px-3.5 py-1.5 rounded-xl bg-[#251422] border border-[#E18E7E]/30 text-xs font-mono text-[#F5EBE6] hover:text-white hover:border-[#E0506B] hover:bg-[#351930] hover:shadow-[0_0_12px_rgba(224,80,107,0.35)] transition-all shadow-sm flex items-center gap-1.5 shrink-0 select-none group/chip"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E0506B] group-hover/chip:scale-125 transition-transform" />
+                    <span>{tech}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="pt-2">
+            <Magnetic strength={0.3} maxDistance={60}>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#E18E7E] hover:bg-[#F2A99B] text-[#130911] font-sans font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-[0_0_25px_rgba(224,80,107,0.5)] group cursor-pointer"
+              >
+                <span>LET'S TALK</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </Magnetic>
+          </div>
+
         </div>
 
       </div>
@@ -140,31 +364,25 @@ export default function AboutSection({ about }) {
 
           {/* Vertical Timeline Track */}
           <div className="relative pl-6 sm:pl-8 space-y-5">
-            {/* Continuous Vertical Timeline Rail */}
-            <div className="absolute left-2.5 sm:left-3.5 top-3 bottom-3 w-0.5 bg-gradient-to-b from-[#E18E7E] via-[#E18E7E]/30 to-[#2A1627]" />
+            {/* Continuous Vertical Timeline Rail with Scroll-Triggered Drawing */}
+            <TimelineDrawLine className="absolute left-2.5 sm:left-3.5 top-3 bottom-3" />
 
             {about.education.map((edu, idx) => {
               const isCurrent = edu.status === 'Currently Pursuing';
-              const displayScore = edu.scoreType === 'CGPA' 
-                ? `CGPA: ${edu.score} / 10` 
-                : `Percentage: ${edu.score}%`;
 
               return (
                 <div key={idx} className="relative group">
                   {/* Timeline Milestone Dot */}
                   <div className="absolute -left-6 sm:-left-8 top-5 -translate-x-1/2 flex items-center justify-center">
                     {isCurrent ? (
-                      <span className="relative flex h-4 w-4">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E18E7E] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-[#E18E7E] border-2 border-[#1C101A]" />
-                      </span>
+                      <PulsingDot color="#E18E7E" />
                     ) : (
                       <span className="w-3.5 h-3.5 rounded-full bg-[#1C101A] border-2 border-[#E18E7E]/80 group-hover:border-[#E18E7E] transition-all" />
                     )}
                   </div>
 
-                  {/* Clean Education Card */}
-                  <div className="p-5 rounded-2xl bg-[#251422] border border-[#E18E7E]/20 hover:border-[#E18E7E]/50 transition-all shadow-sm">
+                  {/* Clean Education Card with Glass Spotlight */}
+                  <GlassGlowCard className="p-5 rounded-2xl bg-[#251422] border border-[#E18E7E]/20 shadow-sm">
                     {/* Header: Degree & Period */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
                       <h4 className="font-poppins font-bold text-base text-white group-hover:text-[#F2A99B] transition-colors">
@@ -181,14 +399,18 @@ export default function AboutSection({ about }) {
                       {edu.institution} • {edu.location}
                     </p>
 
-                    {/* Clean Score Line (Only Score / Percentage, No fluff) */}
+                    {/* Clean Score Line with Animated Count-Up */}
                     <div className="pt-3 border-t border-white/5 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <div className="w-5 h-5 rounded-full bg-[#1C101A] border border-[#E18E7E]/30 flex items-center justify-center shrink-0">
                           <CheckCircle2 className="w-3 h-3 text-[#E18E7E]" />
                         </div>
                         <span className="text-sm font-poppins font-bold text-white">
-                          {displayScore}
+                          {edu.scoreType === 'CGPA' ? (
+                            <>CGPA: <CountUpNumber value={edu.score} decimals={2} /> / 10</>
+                          ) : (
+                            <>Percentage: <CountUpNumber value={edu.score} decimals={edu.score % 1 !== 0 ? 1 : 0} />%</>
+                          )}
                         </span>
                       </div>
 
@@ -196,7 +418,7 @@ export default function AboutSection({ about }) {
                         {edu.status}
                       </span>
                     </div>
-                  </div>
+                  </GlassGlowCard>
                 </div>
               );
             })}
@@ -232,7 +454,7 @@ export default function AboutSection({ about }) {
                         {item.title}
                       </h4>
                     </div>
-                    <p className="text-xs text-[#D8C6C0] font-sans font-normal leading-relaxed pl-3.5 mt-1">
+                    <p className="text-xs text-[#E8DDD8] font-sans font-medium leading-relaxed pl-3.5 mt-1">
                       {item.detail}
                     </p>
                   </div>
@@ -285,32 +507,19 @@ export default function AboutSection({ about }) {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Arch Frame */}
-            <div className="relative w-64 h-88 sm:w-72 sm:h-[420px] rounded-t-full rounded-b-3xl p-2.5 bg-gradient-to-b from-[#E18E7E]/40 via-[#2A1627] to-[#130911] border-2 border-[#E18E7E] shadow-2xl overflow-hidden flex items-end justify-center">
+            {/* Image Preview */}
+            <div className="relative w-64 h-88 sm:w-76 sm:h-[460px] rounded-2xl p-2 bg-gradient-to-b from-[#E18E7E]/40 via-[#2A1627] to-[#130911] border-2 border-[#E18E7E] shadow-2xl overflow-hidden flex items-center justify-center">
               <div className="absolute top-10 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full bg-[#E18E7E]/35 blur-2xl pointer-events-none" />
               <img
-                src={imgSrc}
-                alt="Barath S. Spotlight"
-                className="relative z-10 w-full h-full object-cover object-top rounded-t-full rounded-b-2xl filter contrast-[1.08] brightness-105 drop-shadow-[0_25px_40px_rgba(225,142,126,0.45)]"
+                src={swipeImages[imageIndex].src}
+                alt="Barath S."
+                className="relative z-10 w-full h-full object-cover object-top rounded-xl filter contrast-[1.08] brightness-105 drop-shadow-[0_25px_40px_rgba(225,142,126,0.45)]"
               />
-            </div>
-
-            {/* Caption */}
-            <div className="mt-5 text-center relative z-10 space-y-1">
-              <h3 className="font-poppins font-bold text-xl text-[#FFF6F2]">
-                Barath S.
-              </h3>
-              <p className="text-xs font-mono text-[#F2A99B] uppercase tracking-wider">
-                An Aspiring AI & ML Engineer
-              </p>
-              <span className="text-[11px] font-mono text-[#D8C6C0] block pt-1">
-                Chennai, Tamil Nadu
-              </span>
             </div>
           </div>
         </div>
       )}
 
-    </section>
+    </ScrollSection>
   );
 }

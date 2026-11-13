@@ -12,6 +12,13 @@
   }
 }
 
+/* Custom Cyber Arrow Cursor on Desktop */
+@media (pointer: fine) {
+  body, a, button, input, select, textarea, [role="button"], .cursor-pointer {
+    cursor: none !important;
+  }
+}
+
 /* Editorial Rose Gold Pattern */
 .editorial-grid {
   background-size: 52px 52px;
@@ -54,11 +61,19 @@ html.light ::-webkit-scrollbar-thumb {
 }
 
 /* Light Surface & Card Overrides */
+html.light [class*="bg-[#130911]"],
 html.light .bg-\[\#130911\],
 html.light .bg-\[\#130911\]\/90 {
   background-color: #FAF5F0 !important;
 }
 
+html.light [class*="bg-[#0A0A0A]"],
+html.light .bg-\[\#0A0A0A\],
+html.light .bg-\[\#0A0A0A\]\/90 {
+  background-color: #FFFFFF !important;
+}
+
+html.light [class*="bg-[#1C101A]"],
 html.light .bg-\[\#1C101A\],
 html.light .bg-\[\#1C101A\]\/90,
 html.light .bg-\[\#1C101A\]\/95,
@@ -67,6 +82,7 @@ html.light .bg-\[\#1C101A\]\/75 {
   box-shadow: 0 10px 30px -10px rgba(130, 70, 60, 0.08) !important;
 }
 
+html.light [class*="bg-[#251422]"],
 html.light .bg-\[\#251422\],
 html.light .bg-\[\#251422\]\/90,
 html.light .bg-\[\#251422\]\/85,
@@ -76,44 +92,69 @@ html.light .bg-\[\#251422\]\/70 {
   background-color: #F8F1EB !important;
 }
 
+html.light [class*="bg-[#2E182B]"],
 html.light .bg-\[\#2E182B\] {
   background-color: #F2E5DC !important;
 }
 
+html.light [class*="bg-[#2A1627]"],
 html.light .bg-\[\#2A1627\] {
   background-color: #F5EAE3 !important;
 }
 
+html.light [class*="bg-[#301A2C]"],
 html.light .bg-\[\#301A2C\] {
   background-color: #EFE0D7 !important;
 }
 
-/* Light Gradient Banner Overrides */
+/* Light Gradient Banner & Footer Overrides */
+html.light [class*="from-[#2A1627]"],
 html.light .from-\[\#2A1627\] {
   --tw-gradient-from: #F6ECE5 var(--tw-gradient-from-position) !important;
 }
+html.light [class*="via-[#200E1D]"],
 html.light .via-\[\#200E1D\] {
   --tw-gradient-via: #EFE2D8 var(--tw-gradient-to-position) !important;
 }
+html.light [class*="to-[#1C101A]"],
 html.light .to-\[\#1C101A\] {
   --tw-gradient-to: #FFFFFF var(--tw-gradient-to-position) !important;
 }
 
+html.light [class*="from-[#1C101A]"],
+html.light .from-\[\#1C101A\] {
+  --tw-gradient-from: #FFFFFF var(--tw-gradient-from-position) !important;
+}
+html.light [class*="via-[#140812]"],
+html.light .via-\[\#140812\] {
+  --tw-gradient-via: #FFF8F3 var(--tw-gradient-to-position) !important;
+}
+html.light [class*="to-[#0A0A0A]"],
+html.light .to-\[\#0A0A0A\] {
+  --tw-gradient-to: #F5ECE5 var(--tw-gradient-to-position) !important;
+}
+
 /* Light Typography & Contrast Overrides */
+html.light [class*="text-[#FFF6F2]"],
 html.light .text-\[\#FFF6F2\],
 html.light .text-white {
   color: #1C101A !important;
 }
 
+html.light [class*="text-[#E8DDD8]"],
+html.light [class*="text-[#D8C6C0]"],
+html.light [class*="text-[#F5EBE6]"],
 html.light .text-\[\#D8C6C0\],
 html.light .text-\[\#F5EBE6\] {
-  color: #3E3038 !important;
+  color: #382430 !important;
 }
 
+html.light [class*="text-[#F2A99B]"],
 html.light .text-\[\#F2A99B\] {
   color: #B55242 !important;
 }
 
+html.light [class*="text-[#E18E7E]"],
 html.light .text-\[\#E18E7E\] {
   color: #C97262 !important;
 }
@@ -142,6 +183,15 @@ html.light .bg-\[\#E18E7E\]\/10 {
 /* Light Big Hero "PORTFOLIO" Heading */
 html.light h1.text-\[\#E18E7E\]\/75 {
   color: rgba(201, 114, 98, 0.18) !important;
+}
+
+/* Light Giant Name Stroke in Footer */
+html.light .footer-giant-name {
+  -webkit-text-stroke: 1.5px rgba(28, 16, 26, 0.25) !important;
+}
+html.light .footer-giant-name:hover {
+  -webkit-text-stroke: 1.5px #E0506B !important;
+  color: #E0506B !important;
 }
 
 /* Light Pill Button */

@@ -238,7 +238,8 @@ export const portfolioData = {
           "Project Management",
           "Client Handling",
           "Public Speaking",
-          "Problem Solving"
+          "Problem Solving",
+          "Good Communication"
         ]
       }
     ]

@@ -12,6 +12,7 @@ import CustomCursor from './components/CustomCursor';
 import Neural3DCanvas from './components/Neural3DCanvas';
 import { portfolioData } from './data/portfolioData';
 import { Sun, Moon } from 'lucide-react';
+import { SmoothScrollProvider, ScrollProgressBar, FilmGrainOverlay } from './animations';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -58,9 +59,16 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#130911] text-[#FFF6F2] selection:bg-[#E18E7E] selection:text-[#130911] font-sans overflow-x-hidden transition-colors duration-300">
-      {/* Interactive Elastic Giggle Cursor */}
-      <CustomCursor />
+    <SmoothScrollProvider>
+      <div className="relative min-h-screen bg-[#130911] text-[#FFF6F2] selection:bg-[#E18E7E] selection:text-[#130911] font-sans overflow-x-hidden transition-colors duration-300">
+        {/* Thin Burgundy Top Scroll Progress Indicator */}
+        <ScrollProgressBar />
+
+        {/* Faint Ambient Film Grain Overlay */}
+        <FilmGrainOverlay />
+
+        {/* Interactive Elastic Giggle Cursor */}
+        <CustomCursor />
 
       {/* Subtle 3D Celestial / Neural Perspective Mesh */}
       <Neural3DCanvas theme={theme} />
@@ -92,7 +100,7 @@ export default function App() {
       </main>
 
       {/* 6. EDITORIAL FOOTER (Rose Gold Bottom Banner + 6 Direct Platform Links) */}
-      <Footer profile={portfolioData.profile} />
+      <Footer profile={portfolioData.profile} theme={theme} />
 
       {/* Floating Theme Switch Pill for Quick Access on Any Page */}
       <div className="fixed bottom-6 right-6 z-40 hidden sm:block">
@@ -101,7 +109,11 @@ export default function App() {
           type="button"
           aria-label={`Toggle ${theme === 'dark' ? 'light' : 'dark'} mode`}
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode (Default: Dark)`}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#1C101A]/90 hover:bg-[#E18E7E] text-[#F2A99B] hover:text-[#130911] border border-[#E18E7E]/30 shadow-2xl backdrop-blur-md transition-all duration-300 cursor-pointer group text-xs font-mono"
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-full shadow-2xl backdrop-blur-md transition-all duration-300 cursor-pointer group text-xs font-mono border ${
+            theme === 'light'
+              ? 'bg-white/90 hover:bg-[#C97262] text-[#4A3240] hover:text-white border-[#C97262]/30 shadow-[0_4px_20px_rgba(130,70,60,0.15)]'
+              : 'bg-[#1C101A]/90 hover:bg-[#E18E7E] text-[#F2A99B] hover:text-[#130911] border-[#E18E7E]/30'
+          }`}
         >
           {theme === 'dark' ? (
             <>
@@ -117,5 +129,6 @@ export default function App() {
         </button>
       </div>
     </div>
+  </SmoothScrollProvider>
   );
 }
